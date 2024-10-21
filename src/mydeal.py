@@ -42,22 +42,24 @@ def transform_wc_data(input_file, output_file):
     wc_data_transformed["ShippingLength"] = wc_data["Length (cm)"]
     wc_data_transformed["ShippingWidth"] = wc_data["Width (cm)"]
     wc_data_transformed["ShippingHeight"] = wc_data["Height (cm)"]
+    wc_data_transformed["DeliveryTime"] = "2-5 business days"
+    wc_data_transformed["MaxDaysForDelivery"] = 10
 
     # TODO: 添加判断是否是否包邮
     wc_data_transformed["ShippingCostCategory"] = "Other"
-    wc_data_transformed["FreightSchemeID"] = "2303"
+    wc_data_transformed["FreightSchemeID"] = 2303
 
     # Handling Image URLs (splitting multiple images if needed), max 10 images
     wc_data_transformed["ImageURL_1"] = wc_data["Images"].apply(lambda x: str(x).split(",")[0] if pd.notna(x) else "")
     wc_data_transformed["ImageURL_2"] = wc_data["Images"].apply(lambda x: str(x).split(",")[1] if pd.notna(x) and len(str(x).split(",")) > 1 else "")
-    wc_data_transformed["ImageURL_3"] = wc_data["Images"].apply(lambda x: str(x).split(",")[3] if pd.notna(x) and len(str(x).split(",")) > 2 else "")
-    wc_data_transformed["ImageURL_4"] = wc_data["Images"].apply(lambda x: str(x).split(",")[4] if pd.notna(x) and len(str(x).split(",")) > 3 else "")
-    wc_data_transformed["ImageURL_5"] = wc_data["Images"].apply(lambda x: str(x).split(",")[5] if pd.notna(x) and len(str(x).split(",")) > 4 else "")
-    wc_data_transformed["ImageURL_6"] = wc_data["Images"].apply(lambda x: str(x).split(",")[6] if pd.notna(x) and len(str(x).split(",")) > 5 else "")
-    wc_data_transformed["ImageURL_7"] = wc_data["Images"].apply(lambda x: str(x).split(",")[7] if pd.notna(x) and len(str(x).split(",")) > 6 else "")
-    wc_data_transformed["ImageURL_8"] = wc_data["Images"].apply(lambda x: str(x).split(",")[8] if pd.notna(x) and len(str(x).split(",")) > 7 else "")
-    wc_data_transformed["ImageURL_9"] = wc_data["Images"].apply(lambda x: str(x).split(",")[9] if pd.notna(x) and len(str(x).split(",")) > 8 else "")
-    wc_data_transformed["ImageURL_10"] = wc_data["Images"].apply(lambda x: str(x).split(",")[10] if pd.notna(x) and len(str(x).split(",")) > 9 else "")
+    wc_data_transformed["ImageURL_3"] = wc_data["Images"].apply(lambda x: str(x).split(",")[2] if pd.notna(x) and len(str(x).split(",")) > 2 else "")
+    wc_data_transformed["ImageURL_4"] = wc_data["Images"].apply(lambda x: str(x).split(",")[3] if pd.notna(x) and len(str(x).split(",")) > 3 else "")
+    wc_data_transformed["ImageURL_5"] = wc_data["Images"].apply(lambda x: str(x).split(",")[4] if pd.notna(x) and len(str(x).split(",")) > 4 else "")
+    wc_data_transformed["ImageURL_6"] = wc_data["Images"].apply(lambda x: str(x).split(",")[5] if pd.notna(x) and len(str(x).split(",")) > 5 else "")
+    wc_data_transformed["ImageURL_7"] = wc_data["Images"].apply(lambda x: str(x).split(",")[6] if pd.notna(x) and len(str(x).split(",")) > 6 else "")
+    wc_data_transformed["ImageURL_8"] = wc_data["Images"].apply(lambda x: str(x).split(",")[7] if pd.notna(x) and len(str(x).split(",")) > 7 else "")
+    wc_data_transformed["ImageURL_9"] = wc_data["Images"].apply(lambda x: str(x).split(",")[8] if pd.notna(x) and len(str(x).split(",")) > 8 else "")
+    wc_data_transformed["ImageURL_10"] = wc_data["Images"].apply(lambda x: str(x).split(",")[9] if pd.notna(x) and len(str(x).split(",")) > 9 else "")
 
     # Fill in empty columns with defaults, like empty strings or 0 for numerical columns
     wc_data_transformed.fillna("", inplace=True)
